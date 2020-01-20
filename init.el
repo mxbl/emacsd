@@ -70,6 +70,7 @@ FEATURE may be anyone of:
 (require 'config-evil)
 (require 'config-hydra)
 (require 'config-helm)
+(require 'config-eshell)
 
 ;; load key bindings
 (when (file-exists-p bindings-file) (load bindings-file))

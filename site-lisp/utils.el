@@ -12,4 +12,18 @@ the it takes a second \\[keyboard-quit] to abort the minibuffer."
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
+(require-package 'popwin)
+(require 'popwin)
+(popwin-mode)
+(push '("*scratch*" :position top :height 16) popwin:special-display-config)
+(push '(term-mode   :position top :height 16) popwin:special-display-config)
+
+(defun popwin-term:term (exe)
+  (interactive)
+  (popwin:display-buffer-1
+   (or (get-buffer "*terminal*")
+       (save-window-excursion
+         (term exe)))
+   :default-config-keywords '(:position :top)))
+
 (provide 'utils)

@@ -28,7 +28,7 @@
     ("89d8b0707b639a34422f76afe2be50dd8bb53d0d45ae9c6fa598e8b4b40f8e8d" "9805f784036757d2c75568afa977cdf908de5d5038d32b63b073560d2c15e152" default)))
  '(package-selected-packages
    (quote
-    (ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex))))
+    (popwin ace-window ace-jump-mode eshell-z ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

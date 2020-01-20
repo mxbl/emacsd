@@ -13,6 +13,13 @@
 			  (define-key map "b" #'ido-switch-buffer)
 			  (define-key map "h" #'helm-buffers-list)
 			  (define-key map "f" #'find-file)
+			  (define-key map "s" (lambda ()
+						(interactive)
+						(switch-to-buffer "*scratch*")))
+			  (define-key map "e" (lambda ()
+						(interactive)
+						(popwin:display-buffer-1
+						 (get-buffer "*eshell*"))))
 			  map))
 
 (require-package 'key-chord)
@@ -25,7 +32,17 @@
 (-define-key evil-normal-state-map "SPC b" buffer-switch-map)
 (-define-key evil-normal-state-map "SPC h" help-map)
 (-define-key evil-normal-state-map "SPC x" #'smex)
+
+;; ace jumping around
+;(-define-key evil-normal-state-map ", l" #'evil-ace-jump-line-mode)
+;(-define-key evil-normal-state-map ", w" #'evil-ace-jump-word-mode)
+;(-define-key evil-normal-state-map ", c" #'evil-ace-jump-char-mode)
+(key-chord-define evil-normal-state-map "ff" 'evil-ace-jump-word-mode)
+;(-define-key evil-normal-state-map ", f" #'ace-window)
+
+;; projectile
 (-define-key evil-normal-state-map "SPC p" #'helm-projectile)
+(-define-key evil-normal-state-map ", p" #'helm-projectile-switch-project)
 
 ;; elisp evaluation
 (-define-key evil-normal-state-map ", e" #'eval-last-sexp)
