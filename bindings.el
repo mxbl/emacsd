@@ -10,8 +10,7 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 
 (setq buffer-switch-map (let ((map (make-sparse-keymap)))
-			  (define-key map "b" #'ido-switch-buffer)
-			  (define-key map "h" #'helm-buffers-list)
+			  (define-key map "b" #'helm-buffers-list)
 			  (define-key map "f" #'find-file)
 			  (define-key map "s" (lambda ()
 						(interactive)
@@ -41,7 +40,7 @@
 ;(-define-key evil-normal-state-map ", f" #'ace-window)
 
 ;; projectile
-(-define-key evil-normal-state-map "SPC p" #'helm-projectile)
+(-define-key evil-normal-state-map "SPC p" #'projectile-command-map)
 (-define-key evil-normal-state-map ", p" #'helm-projectile-switch-project)
 
 ;; elisp evaluation
@@ -57,10 +56,12 @@
 (-define-key evil-normal-state-map "C-k" #'evil-window-up)
 (-define-key evil-normal-state-map "C-l" #'evil-window-right)
 
-;(-define-key eshell-mode-map "C-h" #'evil-window-left)
-;(-define-key eshell-mode-map "C-j" #'evil-window-down)
-;(-define-key eshell-mode-map "C-k" #'evil-window-up)
-;(-define-key eshell-mode-map "C-l" #'evil-window-right)
+(add-hook 'eshell-mode-hook
+	  (lambda ()
+	    (-define-key eshell-mode-map "C-h" #'evil-window-left)
+	    (-define-key eshell-mode-map "C-j" #'evil-window-down)
+	    (-define-key eshell-mode-map "C-k" #'evil-window-up)
+	    (-define-key eshell-mode-map "C-l" #'evil-window-right)))
 
 (-define-key evil-normal-state-map "SPC v" (kbd "C-w v C-w l")) ; verical split
 (-define-key evil-normal-state-map "SPC s" (kbd "C-w s C-w j")) ; horizontal split

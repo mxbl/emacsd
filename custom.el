@@ -7,6 +7,10 @@
 ;(set-face-attribute 'default nil :font "Monaco-10.5")
 (set-face-attribute 'default nil :font "Source Code Pro for Powerline-11")
 
+(require-package 'diminish)
+(with-eval-after-load 'undo-tree (diminish 'undo-tree-mode))
+(with-eval-after-load 'paredit (diminish 'paredit-mode))
+
 ;; streamline the interface
 (add-hook 'emacs-lisp-mode-hook
 	  (lambda ()
@@ -25,10 +29,10 @@
  '(cursor-in-non-selected-windows nil)
  '(custom-safe-themes
    (quote
-    ("89d8b0707b639a34422f76afe2be50dd8bb53d0d45ae9c6fa598e8b4b40f8e8d" "9805f784036757d2c75568afa977cdf908de5d5038d32b63b073560d2c15e152" default)))
+    ("09d1ed1560b3ca3bb064c07de2e51af3cc639bbe3f1aa24528c1023b1896a460" "89d8b0707b639a34422f76afe2be50dd8bb53d0d45ae9c6fa598e8b4b40f8e8d" "9805f784036757d2c75568afa977cdf908de5d5038d32b63b073560d2c15e152" default)))
  '(package-selected-packages
    (quote
-    (popwin ace-window ace-jump-mode eshell-z ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex))))
+    (diminish delight doom-modeline popwin ace-window ace-jump-mode eshell-z ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

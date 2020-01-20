@@ -53,13 +53,15 @@
 ;; projectile
 (require-package 'projectile)
 (require-package 'helm-projectile)
-(require-package 'ag)
-(projectile-global-mode t)
+(after 'helm-projectile
+  (add-to-list 'helm-projectile-sources-list 'helm-source-projectile-recentf-list))
 
 (setq projectile-cache-file (concat emacsd-cache-directory "projectile.cache")
       projectile-known-projects-file (concat emacsd-cache-directory "projectile-bookmarks.eld")
       projectile-enable-caching t
       projectile-indexing-method 'alien)
+
+(projectile-mode)
 
 (cl-loop for dir in '("elpa" ".cache" "node_modules")
 	 do

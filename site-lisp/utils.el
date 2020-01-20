@@ -17,6 +17,7 @@ the it takes a second \\[keyboard-quit] to abort the minibuffer."
 (popwin-mode)
 (push '("*scratch*" :position top :height 16) popwin:special-display-config)
 (push '(term-mode   :position top :height 16) popwin:special-display-config)
+(push '(eshell-mode   :position top :height 16) popwin:special-display-config)
 
 (defun popwin-term:term (exe)
   (interactive)

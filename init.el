@@ -30,10 +30,6 @@
                          ("gnu"   . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
-;; load customizations / eyecandys / theme
-(when (file-exists-p custom-file) (load custom-file))
-(load-theme 'default-dark)
-
 (defun require-package (package)
   "Ensures that PACKAGE is installed."
   (unless (or (package-installed-p package)
@@ -64,6 +60,10 @@ FEATURE may be anyone of:
       prog))
    (t
     `(with-eval-after-load ,feature ,@body))))
+
+;; load customizations / eyecandys / theme
+(when (file-exists-p custom-file) (load custom-file))
+(load-theme 'default-dark)
 
 (require 'config-core)
 (require 'config-paredit)
