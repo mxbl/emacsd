@@ -3,7 +3,12 @@
 (require-package 'evil)
 (evil-mode)
 
-(cl-loop for mode in '(eshell-mode)
+(cl-loop for mode in '(eshell-mode
+		       dired-mode
+		       diff-mode
+		       git-commit-mode
+		       help-mode
+		       custom-mode)
 	 do (evil-set-initial-state mode 'emacs))
 
 (require-package 'evil-surround)
