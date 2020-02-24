@@ -14,6 +14,9 @@
 (add-hook 'emacs-lisp-mode-hook
 	  (lambda ()
 	    (setq mode-name "EL")))
+(add-hook 'paredit-mode-hook
+	  (lambda ()
+	    (setq mode-name "PAR")))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq visible-bell nil)
@@ -41,20 +44,29 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(battery-mode-line-format "[%b%p%% - %t]")
+ '(blink-cursor-mode nil)
+ '(column-number-mode t)
  '(cursor-in-non-selected-windows nil)
  '(custom-safe-themes
    (quote
     ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "09d1ed1560b3ca3bb064c07de2e51af3cc639bbe3f1aa24528c1023b1896a460" "89d8b0707b639a34422f76afe2be50dd8bb53d0d45ae9c6fa598e8b4b40f8e8d" "9805f784036757d2c75568afa977cdf908de5d5038d32b63b073560d2c15e152" default)))
+ '(display-battery-mode t)
  '(font-use-system-font t)
+ '(org-agenda-files
+   (quote
+    ("~/diary.org" "~/org/work.org" "~/org/school.org" "~/org/home.org")))
  '(package-selected-packages
    (quote
-    (spaceline smart-mode-line diminish delight doom-modeline popwin ace-window ace-jump-mode eshell-z ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex))))
+    (org-journal geiser haskell-mode spaceline smart-mode-line diminish delight doom-modeline popwin ace-window ace-jump-mode eshell-z ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex)))
+ '(show-paren-mode t)
+ '(tool-bar-mode nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Monaco" :foundry "APPL" :slant normal :weight normal :height 113 :width normal))))
  '(fringe ((t nil)))
  '(mode-line ((t (:background "grey75" :foreground "black"))))
  '(mode-line-inactive ((t (:background "grey30" :foreground "grey80" :weight light)))))

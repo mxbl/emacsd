@@ -70,4 +70,12 @@
 (require-package 'ace-jump-mode)
 (require-package 'ace-window)
 
+;; smooth scrolling
+;; - scroll one line at a time
+;; - turn of acceleration
+;; - scroll window under mouse
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse t) 
+
 (provide 'config-core)

@@ -4,6 +4,7 @@
 (evil-mode)
 
 (cl-loop for mode in '(eshell-mode
+		       term-mode
 		       dired-mode
 		       diff-mode
 		       git-commit-mode

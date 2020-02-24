@@ -71,6 +71,7 @@ FEATURE may be anyone of:
 (require 'config-hydra)
 (require 'config-helm)
 (require 'config-eshell)
+(require 'config-org-mode)
 
 ;; load key bindings
 (when (file-exists-p bindings-file) (load bindings-file))

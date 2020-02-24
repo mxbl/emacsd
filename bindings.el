@@ -11,6 +11,7 @@
 
 (setq buffer-switch-map (let ((map (make-sparse-keymap)))
 			  (define-key map "b" #'helm-buffers-list)
+			  (define-key map "d" #'dired)
 			  (define-key map "f" #'find-file)
 			  (define-key map "s" (lambda ()
 						(interactive)
@@ -19,6 +20,9 @@
 						(interactive)
 						(popwin:display-buffer-1
 						 (get-buffer "*eshell*"))))
+			  (define-key map "t" (lambda ()
+						(interactive)
+						(popwin-term:term "/bin/ghci")))
 			  map))
 
 (require-package 'key-chord)
@@ -49,12 +53,25 @@
 (-define-key evil-normal-state-map ", , b" #'eval-buffer)
 (-define-key evil-visual-state-map ", e" #'eval-region)
 
+;; org mode
+(setq my-org-mode-map (let ((map (make-sparse-keymap)))
+			(define-key map "o" #'org-open-at-point)
+			(define-key map "l" #'org-store-link)
+			(define-key map "a" #'org-agenda)
+			(define-key map "t" #'org-todo)
+			map))
+
+(-define-key evil-normal-state-map ", o" 'org-mode-hydra/body)
+
 ;; Window Management
 ;; switching windows with `C-h',`C-j',`C-k' and `C-l' in different modes
 (-define-key evil-normal-state-map "C-h" #'evil-window-left)
 (-define-key evil-normal-state-map "C-j" #'evil-window-down)
 (-define-key evil-normal-state-map "C-k" #'evil-window-up)
 (-define-key evil-normal-state-map "C-l" #'evil-window-right)
+
+;; terminal mode
+(-define-key evil-emacs-state-map "C-j" #'evil-window-down)
 
 (add-hook 'eshell-mode-hook
 	  (lambda ()
@@ -63,13 +80,14 @@
 	    (-define-key eshell-mode-map "C-k" #'evil-window-up)
 	    (-define-key eshell-mode-map "C-l" #'evil-window-right)))
 
+;; geiser / scheme
+(add-hook 'scheme-mode-hook
+	  (lambda ()
+	    (-define-key evil-normal-mode-map ", e" #'geiser-eval-last-sexp)
+	    (-define-key evil-normal-mode-map ", , b" #'geiser-eval-buffer)
+	    (-define-key evil-normal-mode-map ", , e" #'geiser-eval-definition-and-go)))
+
 (-define-key evil-normal-state-map "SPC v" (kbd "C-w v C-w l")) ; verical split
 (-define-key evil-normal-state-map "SPC s" (kbd "C-w s C-w j")) ; horizontal split
 (-define-key evil-normal-state-map "SPC o" (kbd "C-x 1"))       ; kill all but the current window
 (-define-key evil-normal-state-map "SPC k" (kbd "C-x 0"))       ; kill current window
-
-
-;; Paredit Settings
-(add-hook 'paredit-mode-hook
-	  (lambda ()
-	    (setq mode-name "PAR")))
