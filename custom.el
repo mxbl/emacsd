@@ -21,9 +21,10 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (setq visible-bell nil)
 (blink-cursor-mode -1)
+(global-hl-line-mode 1)
 
 (require-package 'smart-mode-line)
-(setq sm/theme 'light) ; 'dark
+(setq sml/theme 'light) ; 'dark
 (sml/setup)
 (if nil ; maybe with better colors ?
     (after 'evil
@@ -57,7 +58,7 @@
     ("~/diary.org" "~/org/work.org" "~/org/school.org" "~/org/home.org")))
  '(package-selected-packages
    (quote
-    (org-journal geiser haskell-mode spaceline smart-mode-line diminish delight doom-modeline popwin ace-window ace-jump-mode eshell-z ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex)))
+    (emmet-mode restart-emacs company-lsp lsp-company-lsp lsp-treemacs lsp-ui lsp-mode web-mode markdown-mode magit-evil evil-magit magit org-journal geiser haskell-mode spaceline smart-mode-line diminish delight doom-modeline popwin ace-window ace-jump-mode eshell-z ag helm-projectile helm-ag helm hydra projectile key-chord evil-surround evil paredit smex)))
  '(show-paren-mode t)
  '(tool-bar-mode nil))
 
@@ -68,5 +69,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Monaco" :foundry "APPL" :slant normal :weight normal :height 113 :width normal))))
  '(fringe ((t nil)))
+ '(hl-line ((t (:background "#111111"))))
  '(mode-line ((t (:background "grey75" :foreground "black"))))
  '(mode-line-inactive ((t (:background "grey30" :foreground "grey80" :weight light)))))

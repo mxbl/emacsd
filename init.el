@@ -61,6 +61,14 @@ FEATURE may be anyone of:
    (t
     `(with-eval-after-load ,feature ,@body))))
 
+(defmacro lazy-major-mode (pattern mode)
+  "Defines a new major-mode matched by PATTERN, installs MODE if necessary, 
+and activates it."
+  `(add-to-list 'auto-mode-alist
+		'(,pattern . (lambda ()
+			       (require-package (quote ,mode))
+			       (,mode)))))
+
 ;; load customizations / eyecandys / theme
 (when (file-exists-p custom-file) (load custom-file))
 (load-theme 'default-dark)
@@ -72,6 +80,7 @@ FEATURE may be anyone of:
 (require 'config-helm)
 (require 'config-eshell)
 (require 'config-org-mode)
+(require 'config-www)
 
 ;; load key bindings
 (when (file-exists-p bindings-file) (load bindings-file))

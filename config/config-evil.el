@@ -8,7 +8,6 @@
 		       dired-mode
 		       diff-mode
 		       git-commit-mode
-		       help-mode
 		       custom-mode)
 	 do (evil-set-initial-state mode 'emacs))
 
@@ -30,5 +29,9 @@
 (evil-put-property 'evil-state-properties 'emacs    :tag " EMACS ")
 (evil-put-property 'evil-state-properties 'replace  :tag " REPLACE ")
 (evil-put-property 'evil-state-properties 'operator :tag " OPERATOR ")
+
+(require-package 'magit)
+(require-package 'evil-magit)
+(require 'evil-magit)
 
 (provide 'config-evil)

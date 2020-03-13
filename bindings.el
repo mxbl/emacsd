@@ -2,28 +2,13 @@
   (declare (indent defun))
   `(define-key ,keymap (kbd ,sequence) ,bindings))
 
+;; single escape to leave any minibuffer
 (require 'utils)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-
-(setq buffer-switch-map (let ((map (make-sparse-keymap)))
-			  (define-key map "b" #'helm-buffers-list)
-			  (define-key map "d" #'dired)
-			  (define-key map "f" #'find-file)
-			  (define-key map "s" (lambda ()
-						(interactive)
-						(switch-to-buffer "*scratch*")))
-			  (define-key map "e" (lambda ()
-						(interactive)
-						(popwin:display-buffer-1
-						 (get-buffer "*eshell*"))))
-			  (define-key map "t" (lambda ()
-						(interactive)
-						(popwin-term:term "/bin/ghci")))
-			  map))
 
 (require-package 'key-chord)
 (key-chord-mode 1)
@@ -32,9 +17,10 @@
 (-define-key evil-normal-state-map "SPC f" #'find-file)
 (-define-key evil-normal-state-map "SPC w" #'save-buffer)
 (-define-key evil-normal-state-map "SPC ." #'mode-line-other-buffer)
-(-define-key evil-normal-state-map "SPC b" buffer-switch-map)
+(-define-key evil-normal-state-map "SPC b" #'my-buffer-hydra/body)
 (-define-key evil-normal-state-map "SPC h" help-map)
 (-define-key evil-normal-state-map "SPC x" #'smex)
+(-define-key evil-normal-state-map ", q" #'my-quit-hydra/body)
 
 ;; ace jumping around
 ;(-define-key evil-normal-state-map ", l" #'evil-ace-jump-line-mode)
@@ -53,15 +39,7 @@
 (-define-key evil-normal-state-map ", , b" #'eval-buffer)
 (-define-key evil-visual-state-map ", e" #'eval-region)
 
-;; org mode
-(setq my-org-mode-map (let ((map (make-sparse-keymap)))
-			(define-key map "o" #'org-open-at-point)
-			(define-key map "l" #'org-store-link)
-			(define-key map "a" #'org-agenda)
-			(define-key map "t" #'org-todo)
-			map))
-
-(-define-key evil-normal-state-map ", o" 'org-mode-hydra/body)
+(-define-key evil-normal-state-map ", o" #'org-mode-hydra/body)
 
 ;; Window Management
 ;; switching windows with `C-h',`C-j',`C-k' and `C-l' in different modes
